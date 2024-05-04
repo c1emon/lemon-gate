@@ -91,6 +91,10 @@ export function getBodyHeight() {
   return theme.value.screenHeight - theme.value.statusBarHeight - theme.value.navBarHeight
 }
 
+export function getScreenHeight() {
+  return theme.value.screenHeight
+}
+
 export function getWDTheme() {
   return {
     // base
@@ -110,5 +114,7 @@ export function getWDTheme() {
     cellValueColor: getColor(),
     // radio
     radioLabelColor: getColor(),
+    // tabs
+    // tabsNavBg: 'none',
   }
 }

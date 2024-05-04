@@ -21,9 +21,11 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getNavBarHeight: typeof import('./src/composables/theme')['getNavBarHeight']
+  const getScreenHeight: typeof import('./src/composables/theme')['getScreenHeight']
   const getStatusBarHeight: typeof import('./src/composables/theme')['getStatusBarHeight']
   const getSubBgColor: typeof import('./src/composables/theme')['getSubBgColor']
   const getTabBarStyle: typeof import('./src/composables/theme')['getTabBarStyle']
+  const getTotalHeight: typeof import('./src/composables/theme')['getTotalHeight']
   const getWDTheme: typeof import('./src/composables/theme')['getWDTheme']
   const h: typeof import('vue')['h']
   const initTheme: typeof import('./src/composables/theme')['initTheme']
@@ -126,6 +128,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getNavBarHeight: UnwrapRef<typeof import('./src/composables/theme')['getNavBarHeight']>
+    readonly getScreenHeight: UnwrapRef<typeof import('./src/composables/theme')['getScreenHeight']>
     readonly getStatusBarHeight: UnwrapRef<typeof import('./src/composables/theme')['getStatusBarHeight']>
     readonly getSubBgColor: UnwrapRef<typeof import('./src/composables/theme')['getSubBgColor']>
     readonly getTabBarStyle: UnwrapRef<typeof import('./src/composables/theme')['getTabBarStyle']>
@@ -224,6 +227,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getNavBarHeight: UnwrapRef<typeof import('./src/composables/theme')['getNavBarHeight']>
+    readonly getScreenHeight: UnwrapRef<typeof import('./src/composables/theme')['getScreenHeight']>
     readonly getStatusBarHeight: UnwrapRef<typeof import('./src/composables/theme')['getStatusBarHeight']>
     readonly getSubBgColor: UnwrapRef<typeof import('./src/composables/theme')['getSubBgColor']>
     readonly getTabBarStyle: UnwrapRef<typeof import('./src/composables/theme')['getTabBarStyle']>

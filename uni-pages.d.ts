@@ -5,12 +5,13 @@
 
 interface NavigateToOptions {
   url: "/pages/index" |
-  "/pages/map" |
-  "/pages/mine" |
-  "/pages/theme" |
-  "/pages-sub/index";
+       "/pages/login" |
+       "/pages/map" |
+       "/pages/mine" |
+       "/pages/theme" |
+       "/pages-sub/index";
 }
-interface RedirectToOptions extends NavigateToOptions { }
+interface RedirectToOptions extends NavigateToOptions {}
 
 interface SwitchTabOptions {
   url: "/pages/index" | "/pages/mine"
