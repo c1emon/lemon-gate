@@ -1,7 +1,6 @@
 <!-- eslint-disable no-console -->
 <script setup lang="ts">
 import { getNavBarHeight, getScreenHeight, getStatusBarHeight } from '~/composables/theme'
-import bgImg from '~/static/watermark_ad8d1.png'
 import peopleLogo from '~/static/people.png'
 import wxLogo from '~/static/wx.png'
 import zhifubaoLogo from '~/static/zhifubao.png'
@@ -10,7 +9,7 @@ const tabId = ref<number>(0)
 </script>
 
 <template>
-  <div :style="{ 'padding-top': `${getStatusBarHeight() + getNavBarHeight()}px`, 'height': `${getScreenHeight()}px`, 'background-image': `url(${bgImg})` }" box-border w-full bg-cover p="x-4">
+  <div :style="{ 'padding-top': `${getStatusBarHeight() + getNavBarHeight()}px`, 'height': `${getScreenHeight()}px`, 'background-image': 'url(https://pu61ic.oss-cn-shanghai.aliyuncs.com/watermark_ad8d1.png)' }" box-border w-full bg-cover p="x-4">
     <div box-border h-100px w-full flex justify-around flex-items-center bg-transparent>
       <wd-img
         :width="70"
