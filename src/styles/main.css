@@ -1,0 +1,8 @@
+page {
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  height: 100%;
+}
