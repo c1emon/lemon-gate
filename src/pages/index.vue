@@ -36,7 +36,8 @@ function click(t: string) {
     // showNotify({
     //   message: '通知内容',
     // })
-    router.push(`/pages/login`)
+
+    router.replace(`/pages/login`)
   }
   else if (t === 'map') {
     router.push(`/pages/${t}`)
