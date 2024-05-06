@@ -64,11 +64,15 @@ function forgetPwd() {
   toast.warning(`不好意思～忘记密码暂时未实现`)
 }
 
-function btnClk() {
-  if (tabId.value === 0)
+function goBtnClk() {
+  if (tabId.value === 0) {
     toast.info(`登录...`)
-  else
-    toast.info(`注册...`)
+    router.push({
+      path: '/pages/index',
+      tabBar: true,
+    })
+  }
+  else { toast.info(`注册...`) }
 }
 
 function otherLogin(provider: string) {
@@ -198,7 +202,7 @@ function otherLogin(provider: string) {
         </div>
 
         <div w="40%">
-          <wd-button hairline :block="true" :disabled="isGoBtnDisabled" icon="arrow-right1" size="large" @click="btnClk">
+          <wd-button hairline :block="true" :disabled="isGoBtnDisabled" icon="arrow-right1" size="large" @click="goBtnClk">
             {{ goBtnText }}
           </wd-button>
         </div>
