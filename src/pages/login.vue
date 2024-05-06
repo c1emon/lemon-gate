@@ -13,19 +13,34 @@ const loginTypeId = ref<number>(0)
 const forceId = ref<number>(-1)
 
 const name = ref<string>('clemon')
+// 账号登录
 const account = ref<string>('')
 const password = ref<string>('')
+// 短信登录
+const phone = ref<string>('')
+const smsCode = ref<string>('')
+// 注册
 const emailOrPhone = ref<string>('')
+
 const smsBtnText = ref<string>('发送')
 const isSmsBtnDisabled = ref<boolean>(false)
 
-const btnText = computed(() => {
+const isGoBtnDisabled = computed(() => {
+  if (loginTypeId.value === 0)
+    return !(account.value.length > 0 && password.value.length > 0)
+  else if (loginTypeId.value === 1)
+    return !(phone.value.length > 0 && smsCode.value.length > 0)
+  else
+    return true
+})
+
+const goBtnText = computed(() => {
   return tabId.value === 0 ? '登录' : '注册'
 })
 
 const isBadAccount = computed(() => {
-  if (account.value.length > 5)
-    return true
+  // if (account.value.length > 5)
+  //   return true
   return false
 })
 
@@ -81,7 +96,7 @@ function otherLogin(provider: string) {
       </div>
     </div>
 
-    <div v-if="tabId === 0">
+    <div v-show="tabId === 0">
       <div p-b-8px text-left text-size-4xl>
         欢迎回来,
       </div>
@@ -89,7 +104,7 @@ function otherLogin(provider: string) {
         {{ name }}.
       </div>
       <wd-tabs v-model="loginTypeId" :line-width="44">
-        <wd-tab title="密码登录">
+        <wd-tab title="账号密码登录">
           <div block p-b-6px p-t-6px text-left text-size-lg>
             账号
           </div>
@@ -113,13 +128,13 @@ function otherLogin(provider: string) {
             手机号
           </div>
           <div p-b-16px>
-            <wd-input v-model="account" type="text" size="large" :error="isBadAccount" confirm-type="next" confirm-hold clearable placeholder=" " no-border b-rd-16px @confirm="() => forceId = 1" @focus="() => forceId = -1" />
+            <wd-input v-model="phone" type="text" size="large" :error="isBadAccount" confirm-type="next" confirm-hold clearable placeholder=" " no-border b-rd-16px @confirm="() => forceId = 1" @focus="() => forceId = -1" />
           </div>
           <div p-b-6px text-left text-size-lg>
             验证码
           </div>
           <div p-b-16px>
-            <wd-input v-model="password" placeholder=" " :focus="forceId === 1" size="large" no-border use-suffix-slot b-rd-16px>
+            <wd-input v-model="smsCode" placeholder=" " :focus="forceId === 1" size="large" no-border use-suffix-slot b-rd-16px>
               <template #suffix>
                 <wd-button hairline size="small" :disabled="isSmsBtnDisabled" style="--wot-button-small-height: 24px" @click="smsSend">
                   {{ smsBtnText }}
@@ -130,7 +145,7 @@ function otherLogin(provider: string) {
         </wd-tab>
       </wd-tabs>
     </div>
-    <div v-else>
+    <div v-show="tabId === 1">
       <div p-b-10px text-left text-size-4xl>
         你好 新朋友,
       </div>
@@ -183,8 +198,8 @@ function otherLogin(provider: string) {
         </div>
 
         <div w="40%">
-          <wd-button hairline :block="true" icon="arrow-right1" size="large" @click="btnClk">
-            {{ btnText }}
+          <wd-button hairline :block="true" :disabled="isGoBtnDisabled" icon="arrow-right1" size="large" @click="btnClk">
+            {{ goBtnText }}
           </wd-button>
         </div>
       </div>
