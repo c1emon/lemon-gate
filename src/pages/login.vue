@@ -16,6 +16,8 @@ const name = ref<string>('clemon')
 const account = ref<string>('')
 const password = ref<string>('')
 const emailOrPhone = ref<string>('')
+const smsBtnText = ref<string>('发送')
+const isSmsBtnDisabled = ref<boolean>(false)
 
 const btnText = computed(() => {
   return tabId.value === 0 ? '登录' : '注册'
@@ -26,6 +28,22 @@ const isBadAccount = computed(() => {
     return true
   return false
 })
+
+function smsSend() {
+  toast.info('验证码已发送')
+  let counter: number = 59
+  isSmsBtnDisabled.value = true
+  const timer = setInterval(() => {
+    smsBtnText.value = `${counter}s`
+    counter--
+  }, 1000)
+
+  setTimeout(() => {
+    clearInterval(timer)
+    smsBtnText.value = '再次发送'
+    isSmsBtnDisabled.value = false
+  }, 1000 * 60)
+}
 
 function forgetPwd() {
   toast.warning(`不好意思～忘记密码暂时未实现`)
@@ -70,7 +88,7 @@ function otherLogin(provider: string) {
       <div p-b-10px text-left text-size-2xl>
         {{ name }}.
       </div>
-      <wd-tabs v-model="loginTypeId">
+      <wd-tabs v-model="loginTypeId" :line-width="44">
         <wd-tab title="密码登录">
           <div block p-b-6px p-t-6px text-left text-size-lg>
             账号
@@ -90,7 +108,7 @@ function otherLogin(provider: string) {
             </div>
           </div>
         </wd-tab>
-        <wd-tab title="手机登录">
+        <wd-tab title="验证码登录">
           <div block p-b-6px p-t-6px text-left text-size-lg>
             手机号
           </div>
@@ -103,8 +121,8 @@ function otherLogin(provider: string) {
           <div p-b-16px>
             <wd-input v-model="password" placeholder=" " :focus="forceId === 1" size="large" no-border use-suffix-slot b-rd-16px>
               <template #suffix>
-                <wd-button size="small">
-                  发送验证码
+                <wd-button hairline size="small" :disabled="isSmsBtnDisabled" style="--wot-button-small-height: 24px" @click="smsSend">
+                  {{ smsBtnText }}
                 </wd-button>
               </template>
             </wd-input>
