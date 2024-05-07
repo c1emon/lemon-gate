@@ -1,11 +1,14 @@
 <!-- eslint-disable no-console -->
 <script setup lang="ts">
 import { useToast } from 'wot-design-uni'
+import { useRouter } from 'uni-mini-router'
 import { getNavBarHeight, getScreenHeight, getStatusBarHeight } from '~/composables/theme'
 import { useUserStore } from '~/stores/user'
 import peopleLogo from '~/static/people.png'
 import wxLogo from '~/static/wx.png'
 import alipayLogo from '~/static/alipay.png'
+
+const router = useRouter()
 
 const user = useUserStore()
 
@@ -70,10 +73,7 @@ function goBtnClk() {
   if (tabId.value === 0) {
     toast.info(`登录...`)
     user.hasLogin = true
-    router.push({
-      path: '/pages/index',
-      tabBar: true,
-    })
+    router.pushTab('/pages/index')
   }
   else { toast.info(`注册...`) }
 }

@@ -2,8 +2,11 @@
 <script setup lang="ts">
 // import { useNotify, useToast } from 'wot-design-uni'
 import type { LoadMoreState } from 'wot-design-uni/components/wd-loadmore/types'
+import { useRouter } from 'uni-mini-router'
 import { getApiReq } from '~/api/v1'
 import { getColor, setColor } from '~/composables/theme'
+
+const router = useRouter()
 
 // const toast = useToast()
 
@@ -37,7 +40,7 @@ function click(t: string) {
     //   message: '通知内容',
     // })
 
-    router.replace(`/pages/login`)
+    router.replace('/pages/login')
   }
   else if (t === 'map') {
     router.push(`/pages/${t}`)

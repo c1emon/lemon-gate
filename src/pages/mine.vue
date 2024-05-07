@@ -1,5 +1,9 @@
 <!-- eslint-disable no-console -->
 <script setup>
+import { useRouter } from 'uni-mini-router'
+
+const router = useRouter()
+
 function themeSettingClk() {
   router.push(`/pages/theme`)
 }

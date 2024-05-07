@@ -1,6 +1,9 @@
 <!-- eslint-disable no-console -->
 <script setup lang="ts">
+import { useRouter } from 'uni-mini-router'
 import { getBgColor, getColor, getWDTheme } from '~/composables/theme'
+
+const router = useRouter()
 </script>
 
 <template>
