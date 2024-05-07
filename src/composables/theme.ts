@@ -30,6 +30,7 @@ export function initTheme() {
   theme.value.statusBarHeight = systemInfo.statusBarHeight ? systemInfo.statusBarHeight : 0
   theme.value.systemTheme = systemInfo.theme ? systemInfo.theme : 'light'
   theme.value.screenHeight = systemInfo.screenHeight
+  uni.setTabBarStyle(getTabBarStyle())
 }
 
 export function setLightTheme() {

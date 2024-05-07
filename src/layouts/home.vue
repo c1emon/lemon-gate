@@ -1,13 +1,15 @@
 <!-- eslint-disable no-console -->
 <script setup>
-import { getBgColor, getColor, getTabBarStyle, getWDTheme } from '~/composables/theme'
-onShow(() => {
-  // uni.setBackgroundColor({
-  //   backgroundColor: '#f2f0f0',
-  // })
+import { getBgColor, getColor, getWDTheme } from '~/composables/theme'
 
-  uni.setTabBarStyle(getTabBarStyle())
-})
+// onShow(() => {
+// uni.setBackgroundColor({
+//   backgroundColor: '#f2f0f0',
+// })
+
+// uni.setTabBarStyle(getTabBarStyle())
+// console.log('hello from home layout')
+// })
 </script>
 
 <template>

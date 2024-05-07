@@ -2,9 +2,12 @@
 <script setup lang="ts">
 import { useToast } from 'wot-design-uni'
 import { getNavBarHeight, getScreenHeight, getStatusBarHeight } from '~/composables/theme'
+import { useUserStore } from '~/stores/user'
 import peopleLogo from '~/static/people.png'
 import wxLogo from '~/static/wx.png'
 import alipayLogo from '~/static/alipay.png'
+
+const user = useUserStore()
 
 const toast = useToast()
 
@@ -12,7 +15,6 @@ const tabId = ref<number>(0)
 const loginTypeId = ref<number>(0)
 const forceId = ref<number>(-1)
 
-const name = ref<string>('clemon')
 // 账号登录
 const account = ref<string>('')
 const password = ref<string>('')
@@ -67,6 +69,7 @@ function forgetPwd() {
 function goBtnClk() {
   if (tabId.value === 0) {
     toast.info(`登录...`)
+    user.hasLogin = true
     router.push({
       path: '/pages/index',
       tabBar: true,
@@ -105,7 +108,7 @@ function otherLogin(provider: string) {
         欢迎回来,
       </div>
       <div p-b-10px text-left text-size-2xl>
-        {{ name }}.
+        {{ user.name }}.
       </div>
       <wd-tabs v-model="loginTypeId" :line-width="44">
         <wd-tab title="账号密码登录">
