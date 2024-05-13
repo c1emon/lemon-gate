@@ -1,21 +1,18 @@
 <script setup>
-import { useRouter } from 'uni-mini-router'
-import { getBgColor, getColor, getWDTheme } from '~/composables/theme'
+import { useTheme } from '~/composables/theme'
 
+const navTitle = useNavTitle()
 const router = useRouter()
-
-function back() {
-  router.back()
-}
+const { wotVars, bgColor, color } = useTheme()
 </script>
 
 <template>
   <div class="app">
-    <wd-config-provider :theme-vars="getWDTheme()">
+    <wd-config-provider :theme-vars="wotVars">
       <div>
         <wd-navbar
-          :bordered="false" :fixed="true" safe-area-inset-top left-arrow placeholder title="工作台"
-          @click-left="() => back()"
+          :bordered="false" :fixed="true" safe-area-inset-top left-arrow placeholder :title="navTitle"
+          @click-left="() => router.back()"
         >
           <template #left>
             <!-- <wd-icon name="arrow-left" size="24px" /> -->
@@ -34,7 +31,7 @@ function back() {
 
 <style lang="scss" scoped>
 .app {
-  color: v-bind(getColor());
-  background-color: v-bind(getBgColor());
+  color: v-bind(color);
+  background-color: v-bind(bgColor);
 }
 </style>

@@ -2,11 +2,13 @@
 <script setup lang="ts">
 import { useToast } from 'wot-design-uni'
 import { useRouter } from 'uni-mini-router'
-import { getNavBarHeight, getScreenHeight, getStatusBarHeight } from '~/composables/theme'
+import { useTheme } from '~/composables/theme'
 import { useUserStore } from '~/stores/user'
 import peopleLogo from '~/static/people.png'
 import wxLogo from '~/static/wx.png'
 import alipayLogo from '~/static/alipay.png'
+
+const { safeHeight, screenHeight } = useTheme()
 
 const router = useRouter()
 
@@ -84,7 +86,7 @@ function otherLogin(provider: string) {
 </script>
 
 <template>
-  <div :style="{ 'padding-top': `${getStatusBarHeight() + getNavBarHeight()}px`, 'height': `${getScreenHeight()}px`, 'background-image': 'url(https://oss.app.clemon.icu:883/static/imgs/watermark_ad8d1.png)' }" box-border w-full bg-cover p="x-4">
+  <div :style="{ 'padding-top': `${safeHeight}px`, 'height': `${screenHeight}px`, 'background-image': 'url(https://oss.app.clemon.icu:883/static/imgs/watermark_ad8d1.png)' }" box-border w-full bg-cover p="x-4">
     <div box-border w-full flex justify-between flex-items-center bg-transparent p-b-40px>
       <div w="55%" flex justify-start>
         <wd-img

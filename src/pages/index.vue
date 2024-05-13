@@ -1,16 +1,14 @@
 <!-- eslint-disable no-console -->
 <script setup lang="ts">
-// import { useNotify, useToast } from 'wot-design-uni'
+import { useNotify, useToast } from 'wot-design-uni'
 import type { LoadMoreState } from 'wot-design-uni/components/wd-loadmore/types'
-import { useRouter } from 'uni-mini-router'
 import { getApiReq } from '~/api/v1'
-import { getColor, setColor } from '~/composables/theme'
 
 const router = useRouter()
+// const { setNavTitle } = usePageInfo()
+const toast = useToast()
 
-// const toast = useToast()
-
-// const { showNotify } = useNotify()
+const { showNotify } = useNotify()
 
 const swiperList = ref([
   'https://unpkg.com/wot-design-uni-assets/redpanda.jpg',
@@ -34,19 +32,20 @@ function onChange(e: any) {
 
 }
 function click(t: string) {
-  if (t === 'login') {
-    // toast.show('提示信息')
-    // showNotify({
-    //   message: '通知内容',
-    // })
-
-    router.replace('/pages/login')
+  if (t === 'notice') {
+    toast.show('提示信息')
+    showNotify({
+      message: '通知内容',
+    })
   }
   else if (t === 'map') {
-    router.push(`/pages/${t}`)
+    router.push({
+      path: '/pages/map',
+      animationType: 'pop-in',
+    })
   }
-  else if (t === 'color') {
-    router.push({ name: 'subpage' })
+  else if (t === 'login') {
+    router.replace({ name: 'login' })
   }
 
   else {
@@ -99,12 +98,12 @@ onLoad(() => {
           <div class="i-fluent:location-arrow-24-filled h-24px w-24px" />
         </template>
       </wd-grid-item>
-      <wd-grid-item use-icon-slot icon-size="24px" text="登陆页面" @itemclick="() => click('login')">
+      <wd-grid-item use-icon-slot icon-size="24px" text="弹出通知" @itemclick="() => click('notice')">
         <template #icon>
           <div class="i-fluent:megaphone-loud-24-filled h-24px w-24px" />
         </template>
       </wd-grid-item>
-      <wd-grid-item use-icon-slot icon-size="24px" text="改字色" @itemclick="() => click('color')">
+      <wd-grid-item use-icon-slot icon-size="24px" text="登录" @itemclick="() => click('login')">
         <template #icon>
           <div class="i-fluent:paint-brush-24-filled h-24px w-24px" />
         </template>
@@ -128,8 +127,6 @@ onLoad(() => {
 <route lang="yaml">
 layout: home
 name: index
-needAuth: false
-# style:
 #   disableScroll: true
 #   app-plus:
 #     bounce: "none"
