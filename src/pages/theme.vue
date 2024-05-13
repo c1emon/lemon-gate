@@ -52,6 +52,7 @@ function change() {
 
 <route lang="yaml">
 layout: default
+name: theme
 # style:
 #   disableScroll: true
 #   app-plus:

@@ -8,3 +8,9 @@
     </p>
   </div>
 </template>
+
+<route lang="yaml">
+layout: default
+name: subpage
+needAuth: true
+</route>

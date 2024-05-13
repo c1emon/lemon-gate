@@ -14,6 +14,8 @@ import { getBodyHeight } from '~/composables/theme'
 
 <route lang="yaml">
 layout: fullscreen
+name: map
+needAuth: true
 style:
   disableScroll: true
   app-plus:

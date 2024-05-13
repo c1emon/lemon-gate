@@ -32,5 +32,6 @@ onLoad(() => {
 </style>
 
 <route lang="yaml">
-  layout: home
+layout: home
+name: mine
 </route>

@@ -46,7 +46,7 @@ function click(t: string) {
     router.push(`/pages/${t}`)
   }
   else if (t === 'color') {
-    setColor('#FFB6C1')
+    router.push({ name: 'subpage' })
   }
 
   else {
@@ -127,6 +127,8 @@ onLoad(() => {
 
 <route lang="yaml">
 layout: home
+name: index
+needAuth: false
 # style:
 #   disableScroll: true
 #   app-plus:

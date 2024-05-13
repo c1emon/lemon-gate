@@ -3,6 +3,10 @@ import { useRouter } from 'uni-mini-router'
 import { getBgColor, getColor, getWDTheme } from '~/composables/theme'
 
 const router = useRouter()
+
+function back() {
+  router.back()
+}
 </script>
 
 <template>
@@ -11,7 +15,7 @@ const router = useRouter()
       <div>
         <wd-navbar
           :bordered="false" :fixed="true" safe-area-inset-top left-arrow placeholder title="工作台"
-          @click-left="() => router.back()"
+          @click-left="() => back()"
         >
           <template #left>
             <!-- <wd-icon name="arrow-left" size="24px" /> -->

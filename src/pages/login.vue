@@ -227,6 +227,7 @@ function otherLogin(provider: string) {
 
 <route lang="yaml">
 layout: empty
+name: login
 style:
   disableScroll: true
   app-plus:
