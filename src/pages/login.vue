@@ -1,11 +1,16 @@
 <!-- eslint-disable no-console -->
 <script setup lang="ts">
 import { useToast } from 'wot-design-uni'
-import { getNavBarHeight, getScreenHeight, getStatusBarHeight } from '~/composables/theme'
+import { useRouter } from 'uni-mini-router'
+import { useTheme } from '~/composables/theme'
 import { useUserStore } from '~/stores/user'
 import peopleLogo from '~/static/people.png'
 import wxLogo from '~/static/wx.png'
 import alipayLogo from '~/static/alipay.png'
+
+const { safeHeight, screenHeight } = useTheme()
+
+const router = useRouter()
 
 const user = useUserStore()
 
@@ -70,10 +75,7 @@ function goBtnClk() {
   if (tabId.value === 0) {
     toast.info(`登录...`)
     user.hasLogin = true
-    router.push({
-      path: '/pages/index',
-      tabBar: true,
-    })
+    router.pushTab('/pages/index')
   }
   else { toast.info(`注册...`) }
 }
@@ -84,7 +86,7 @@ function otherLogin(provider: string) {
 </script>
 
 <template>
-  <div :style="{ 'padding-top': `${getStatusBarHeight() + getNavBarHeight()}px`, 'height': `${getScreenHeight()}px`, 'background-image': 'url(https://oss.app.clemon.icu:883/static/imgs/watermark_ad8d1.png)' }" box-border w-full bg-cover p="x-4">
+  <div :style="{ 'padding-top': `${safeHeight}px`, 'height': `${screenHeight}px`, 'background-image': 'url(https://oss.app.clemon.icu:883/static/imgs/watermark_ad8d1.png)' }" box-border w-full bg-cover p="x-4">
     <div box-border w-full flex justify-between flex-items-center bg-transparent p-b-40px>
       <div w="55%" flex justify-start>
         <wd-img
@@ -227,6 +229,7 @@ function otherLogin(provider: string) {
 
 <route lang="yaml">
 layout: empty
+name: login
 style:
   disableScroll: true
   app-plus:

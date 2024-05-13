@@ -1,24 +1,17 @@
-<!-- eslint-disable no-console -->
 <script setup>
-import { getBgColor, getColor, getWDTheme } from '~/composables/theme'
+import { useTabBarTheme, useTheme } from '~/composables/theme'
 
-// onShow(() => {
-// uni.setBackgroundColor({
-//   backgroundColor: '#f2f0f0',
-// })
-
-// uni.setTabBarStyle(getTabBarStyle())
-// console.log('hello from home layout')
-// })
+useTabBarTheme()
+const { wotVars, bgColor, color } = useTheme()
 </script>
 
 <template>
   <div class="app">
-    <wd-config-provider :theme-vars="getWDTheme()">
+    <wd-config-provider :theme-vars="wotVars">
       <div>
         <wd-navbar
-          :bordered="false" placeholder :fixed="true"
-          safe-area-inset-top title="工作台"
+          :bordered="false" :fixed="true"
+          safe-area-inset-top placeholder
         />
       </div>
       <wd-notify />
@@ -32,7 +25,7 @@ import { getBgColor, getColor, getWDTheme } from '~/composables/theme'
 
 <style lang="scss" scoped>
 .app {
-  color: v-bind('getColor()');
-  background-color: v-bind('getBgColor()');
+  color: v-bind(color);
+  background-color: v-bind(bgColor);
 }
 </style>
