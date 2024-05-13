@@ -1,11 +1,11 @@
 import { defineManifestConfig } from '@uni-helper/vite-plugin-uni-manifest'
 
 export default defineManifestConfig({
-  'name': 'uni-vitesse',
+  'name': 'lemon-gate',
   'appid': '',
-  'description': 'uniapp + vitesse = strong !!!',
+  'description': 'clemon gate',
   'versionName': '1.0.0',
-  'versionCode': '100',
+  'versionCode': '1',
   'transformPx': false,
   'uniStatistics': {
     enable: false,

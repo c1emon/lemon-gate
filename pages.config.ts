@@ -3,17 +3,7 @@ import { defineUniPages } from '@uni-helper/vite-plugin-uni-pages'
 export default defineUniPages({
   pages: [],
   globalStyle: {
-    // navigationBarTitleText: 'uni-vitesse',
     navigationStyle: 'custom',
-    // 'navigationBarBackgroundColor': '@navBgColor',
-    // 'navigationBarTextStyle': '@navTxtStyle',
-    // 'backgroundColor': '@bgColor',
-    // 'backgroundTextStyle': '@bgTxtStyle',
-    // 'backgroundColorTop': '@bgColorTop',
-    // 'backgroundColorBottom': '@bgColorBottom',
-    // 'app-plus': {
-    //   bounce: 'none',
-    // },
   },
   tabBar: {
     color: '#7A7E83',
