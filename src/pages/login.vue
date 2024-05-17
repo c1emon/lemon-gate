@@ -12,7 +12,7 @@ const { safeHeight, screenHeight } = useTheme()
 
 const router = useRouter()
 
-const user = useUserStore()
+const { login, name } = useUserStore()
 
 const toast = useToast()
 
@@ -74,14 +74,45 @@ function forgetPwd() {
 function goBtnClk() {
   if (tabId.value === 0) {
     toast.info(`登录...`)
-    user.hasLogin = true
-    router.pushTab('/pages/index')
+    login('dev_user_001', 'clemon')
+    router.pushTab({ name: 'index' })
   }
   else { toast.info(`注册...`) }
 }
 
 function otherLogin(provider: string) {
-  toast.warning(`不好意思～第三方登录器${provider}暂时未实现`)
+  switch (provider) {
+    // #ifdef MP-WEIXIN || APP
+    case 'wx' :
+      // #ifdef MP-WEIXIN
+      uni.login({ success(loginRes) {
+        console.log(`loginRes=${JSON.stringify(loginRes, null, 4)}`)
+        // send loginRes.code to backend
+        // get user id, token, openid, etc.
+        // set status then goto index
+        login('dev_user_001', 'clemon')
+        // router.pushTab({ name: 'index' })
+      } })
+      // #endif
+      // #ifdef APP
+      toast.warning('app wx login')
+      // #endif
+      break
+    // #endif
+    // #ifdef MP-ALIPAY || APP
+    case 'alipay' :
+      // #ifdef MP-WEIXIN
+      toast.warning('mp alipay login')
+      // #endif
+
+      // #ifdef APP
+      toast.warning('app alipay login')
+      // #endif
+      break
+    // #endif
+    default :
+      toast.warning(`不好意思～第三方登录器${provider}暂时未实现`)
+  }
 }
 </script>
 
@@ -110,7 +141,7 @@ function otherLogin(provider: string) {
         欢迎回来,
       </div>
       <div p-b-10px text-left text-size-2xl>
-        {{ user.name }}.
+        {{ name }}.
       </div>
       <wd-tabs v-model="loginTypeId" :line-width="44">
         <wd-tab title="账号密码登录">
@@ -187,22 +218,16 @@ function otherLogin(provider: string) {
             其他登录方式:
           </div>
           <div flex flex-wrap justify-between flex-items-start>
-            <wd-img
-              p-5px
-              :width="40"
-              :height="40"
-              mode="aspectFit"
-              :src="wxLogo"
-              @click="() => otherLogin('wx')"
-            />
-            <wd-img
-              p-5px
-              :width="40"
-              :height="40"
-              mode="aspectFit"
-              :src="alipayLogo"
-              @click="() => otherLogin('alipay')"
-            />
+            <!-- #ifdef MP-WEIXIN || APP -->
+            <div p-5px>
+              <button class="otherLoginBtn" :style="{ 'background-image': `url(${wxLogo})` }" @click="() => otherLogin('wx')" />
+            </div>
+            <!-- #endif -->
+            <!-- #ifdef MP-ALIPAY || APP -->
+            <div p-5px>
+              <button class="otherLoginBtn" :style="{ 'background-image': `url(${alipayLogo})` }" @click="() => otherLogin('alipay')" />
+            </div>
+            <!-- #endif -->
           </div>
         </div>
 
@@ -217,6 +242,11 @@ function otherLogin(provider: string) {
 </template>
 
 <style lang="scss" scoped>
+.otherLoginBtn {
+  background-size: 100% 100%;
+  height: 40px;
+  width: 40px;
+}
 :deep(.wd-tabs__nav) {
   background-color: transparent !important;
   background: none !important;
